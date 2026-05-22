@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- TODO: Update page title with the firm name -->
+<title>Andres Santiago Lozano | The Lozano Law Firm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF6F0;
+    --cream-mid: #F0E9DF;
+    --cream-dark: #E3D6C8;
+    --terracotta: #B85C38;
+    --terracotta-light: #D4795A;
+    --terracotta-dark: #8C3E22;
+    --charcoal: #2A1F17;
+    --warm-gray: #6B5C52;
+    --warm-gray-light: #9E8E84;
+    --white: #FFFDFB;
+    --section-pad: 96px 5%;
+    --radius: 4px;
+    --max-w: 1100px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-size: 17px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250, 246, 240, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(42,31,23,0.08); }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--terracotta); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-cta {
+    background: var(--terracotta);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--terracotta-dark) !important; color: var(--white) !important; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 110% 50%, rgba(184, 92, 56, 0.09) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at -10% 80%, rgba(184, 92, 56, 0.06) 0%, transparent 60%),
+      var(--cream);
+  }
+
+  .hero-accent {
+    position: absolute; top: 0; right: 0;
+    width: 45%; height: 100%;
+    background: linear-gradient(135deg, transparent 30%, var(--cream-dark) 100%);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 30px; height: 1px;
+    background: var(--terracotta);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.12;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+  h1 em { font-style: italic; color: var(--terracotta); }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--warm-gray);
+    line-height: 1.8;
+    max-width: 420px;
+    margin-bottom: 40px;
+  }
+
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--charcoal);
+    padding: 14px 32px;
+    border-radius: 2px;
+    border: 1.5px solid var(--cream-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); transform: translateY(-1px); }
+
+  .hero-photo {
+    aspect-ratio: 4/5;
+    background: var(--cream-dark);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+    justify-content: center;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--warm-gray-light);
+  }
+
+  .photo-placeholder svg { width: 60px; height: 60px; opacity: 0.4; }
+  .photo-placeholder p { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 24px; left: -20px;
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 30px rgba(42,31,23,0.1);
+    min-width: 180px;
+  }
+  .hero-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--terracotta);
+    line-height: 1;
+  }
+  .hero-badge-label { font-size: 0.75rem; color: var(--warm-gray); margin-top: 4px; }
+
+  /* DIVIDER */
+  .section-divider {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    height: 1px;
+    background: var(--cream-dark);
+  }
+
+  /* SECTION SHARED */
+  section { padding: var(--section-pad); }
+
+  .section-inner { max-width: var(--max-w); margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    display: block; width: 24px; height: 1px;
+    background: var(--terracotta);
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 2.9rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+
+  /* ABOUT */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 72px;
+    align-items: start;
+  }
+
+  .about-photo {
+    aspect-ratio: 3/4;
+    background: var(--cream-mid);
+    border-radius: 2px;
+    position: sticky; top: 90px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    color: var(--warm-gray-light);
+    overflow: hidden;
+  }
+  .about-photo svg { width: 54px; height: 54px; opacity: 0.35; }
+  .about-photo p { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; }
+
+  .about-content .lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--warm-gray);
+    line-height: 1.65;
+    margin-bottom: 24px;
+    border-left: 2px solid var(--terracotta);
+    padding-left: 20px;
+  }
+
+  .about-content p {
+    color: var(--warm-gray);
+    margin-bottom: 16px;
+    font-size: 0.97rem;
+  }
+
+  .about-credentials {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .credential {
+    background: var(--cream);
+    border-radius: 2px;
+    padding: 16px 18px;
+    border-left: 3px solid var(--terracotta-light);
+  }
+  .credential-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--warm-gray-light);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .credential-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+
+  /* PRACTICE AREAS */
+  #practice { background: var(--cream); }
+
+  .practice-intro {
+    max-width: 560px;
+    color: var(--warm-gray);
+    font-size: 0.97rem;
+    margin-bottom: 56px;
+    line-height: 1.8;
+  }
+
+  .practice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .practice-card {
+    background: var(--white);
+    border-radius: 2px;
+    padding: 36px 32px;
+    border: 1px solid var(--cream-dark);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: default;
+  }
+  .practice-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--terracotta);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .practice-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(42,31,23,0.09); }
+  .practice-card:hover::before { transform: scaleX(1); }
+
+  .practice-icon {
+    width: 52px; height: 52px;
+    background: var(--cream-mid);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+  }
+  .practice-icon svg { width: 26px; height: 26px; stroke: var(--terracotta); fill: none; stroke-width: 1.5; }
+
+  .practice-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .practice-card p { font-size: 0.88rem; color: var(--warm-gray); line-height: 1.8; }
+
+  .practice-card-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .practice-card-link:hover { text-decoration: underline; }
+
+  /* CONTACT */
+  #contact { background: var(--white); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 { margin-bottom: 16px; }
+
+  .contact-info p {
+    color: var(--warm-gray);
+    font-size: 0.95rem;
+    margin-bottom: 36px;
+    line-height: 1.8;
+  }
+
+  .contact-details { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+
+  .detail-icon {
+    width: 36px; height: 36px;
+    background: var(--cream-mid);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .detail-icon svg { width: 17px; height: 17px; stroke: var(--terracotta); fill: none; stroke-width: 1.6; }
+
+  .detail-label { font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gray-light); font-weight: 600; margin-bottom: 2px; }
+  .detail-value { font-size: 0.93rem; color: var(--charcoal); font-weight: 500; }
+
+  /* FORM */
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+
+  .form-group label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--cream);
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 2px;
+    padding: 12px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.93rem;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--terracotta);
+    background: var(--white);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--warm-gray-light); }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+
+  .form-submit {
+    background: var(--terracotta);
+    color: var(--white);
+    border: none;
+    padding: 15px 36px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+    text-transform: uppercase;
+  }
+  .form-submit:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+
+  .form-note {
+    font-size: 0.78rem;
+    color: var(--warm-gray-light);
+    line-height: 1.6;
+  }
+
+  .form-success {
+    display: none;
+    background: #F0F7EE;
+    border: 1px solid #B8D9B2;
+    border-radius: 4px;
+    padding: 16px 20px;
+    color: #3B6D11;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.5);
+    padding: 40px 5%;
+    text-align: center;
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+
+  footer .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  footer a:hover { color: var(--terracotta-light); }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+  .fade-in.delay-1 { transition-delay: 0.1s; }
+  .fade-in.delay-2 { transition-delay: 0.2s; }
+  .fade-in.delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-photo { max-width: 360px; margin: 0 auto; }
+    .hero-accent { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-photo { aspect-ratio: 4/3; position: static; max-width: 400px; }
+    .practice-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <!-- TODO: Update nav logo — format is "First <span>Last</span>" -->
+  <a href="#hero" class="nav-logo">Andres <span>Lozano</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#practice">Practice Areas</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <!-- TODO: Change CTA button label if desired (e.g. "Book a Call") -->
+    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <!-- TODO: Update city/state shown under the nav -->
+      <div class="hero-eyebrow">Chattanooga, Tennessee</div>
+      <!-- TODO: Update hero headline if desired -->
+      <h1>
+        Your Advocate.<br>
+        <em>Your Champion.</em>
+      </h1>
+      <!-- TODO: Update hero subheading — list practice areas and attorney name -->
+      <p class="hero-sub">
+        Experienced, compassionate legal representation in Criminal Defense, DUI, and Family Law.
+        Andres Santiago Lozano fights for your rights — and your future.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Request a Free Consultation</a>
+        <a href="#practice" class="btn-secondary">Our Practice Areas</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-placeholder">
+        <!-- TODO: Replace this entire div.photo-placeholder with <img src="your-photo.jpg" alt="Andres Santiago Lozano" style="width:100%;height:100%;object-fit:cover;"> -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <p>Attorney Photo</p>
+      </div>
+      <div class="hero-badge">
+        <!-- TODO: Replace [X] with actual years of experience (e.g. 10+) -->
+        <div class="hero-badge-num">[X]+</div>
+        <!-- TODO: Update badge label if desired (e.g. "Cases Handled") -->
+        <div class="hero-badge-label">Years of Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="padding: 0 5%;"><div class="section-divider"></div></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-photo">
+        <!-- TODO: Replace this entire div.about-photo content with <img src="your-photo-2.jpg" alt="Andres Santiago Lozano" style="width:100%;height:100%;object-fit:cover;"> -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <p>Attorney Photo</p>
+      </div>
+      <div class="about-content fade-in">
+        <div class="section-label">About the Attorney</div>
+        <!-- TODO: Update attorney full name and title if different -->
+        <h2>Andres Santiago Lozano, Esq.</h2>
+        <!-- TODO: Replace with a real quote from the attorney -->
+        <p class="lead">
+          "My goal is simple: to be the lawyer I would want by my side during the hardest moments of my life."
+        </p>
+        <!-- TODO: Update bio paragraph — replace [Firm Name], [State], and [he/she/they] with real values -->
+        <p>
+          Andres Santiago Lozano founded [Firm Name] on the belief that every person deserves skilled, attentive legal
+          representation — regardless of the complexity of their case or the pressure they're under.
+          With a practice rooted in Chattanooga, [State], [he/she/they] brings a personal, client-first
+          approach to every case.
+        </p>
+        <p>
+          Whether you're facing criminal charges, navigating a DUI, or going through a difficult family
+          transition, Andres Santiago Lozano is here to listen, advise, and advocate fiercely on your behalf.
+          You'll always have direct access — no hand-offs to junior associates.
+        </p>
+        <div class="about-credentials">
+          <div class="credential">
+            <div class="credential-label">Education</div>
+            <!-- TODO: Replace with actual law school name (e.g. "University of Tennessee, J.D.") -->
+            <div class="credential-value">[Law School], J.D.</div>
+          </div>
+          <div class="credential">
+            <div class="credential-label">Bar Admission</div>
+            <!-- TODO: Replace with state and year admitted to the bar (e.g. "State of Tennessee, 2018") -->
+            <div class="credential-value">State of [State], [Year]</div>
+          </div>
+          <div class="credential">
+            <div class="credential-label">Member</div>
+            <!-- TODO: Replace with the appropriate state bar association name -->
+            <div class="credential-value">[State] Bar Association</div>
+          </div>
+          <div class="credential">
+            <div class="credential-label">Serving</div>
+            <!-- TODO: Update service area if needed -->
+            <div class="credential-value">Chattanooga & Surrounding Areas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="padding: 0 5%;"><div class="section-divider"></div></div>
+
+<!-- PRACTICE AREAS -->
+<section id="practice">
+  <div class="section-inner">
+    <div class="section-label">What We Handle</div>
+    <h2>Practice Areas</h2>
+    <p class="practice-intro">
+      From a first-time criminal charge to a contested custody dispute, Andres Santiago Lozano provides
+      hands-on representation across three core areas of law.
+    </p>
+    <div class="practice-grid">
+
+      <!-- Criminal Defense -->
+      <div class="practice-card fade-in">
+        <div class="practice-icon">
+          <!-- Shield icon -->
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Criminal Defense</h3>
+        <p>
+          Facing criminal charges is overwhelming. Andres Santiago Lozano provides an aggressive, informed
+          defense — protecting your rights from arrest through trial. Misdemeanors, felonies, and everything in between.
+        </p>
+        <a href="#contact" class="practice-card-link">Talk to an attorney →</a>
+      </div>
+
+      <!-- DUI Defense -->
+      <div class="practice-card fade-in delay-1">
+        <div class="practice-icon">
+          <!-- Car icon -->
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 4v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3>DUI Defense</h3>
+        <p>
+          A DUI arrest doesn't have to define your future. Andres Santiago Lozano understands the science,
+          the law, and the system — working to challenge evidence and minimize consequences
+          for your license, record, and livelihood.
+        </p>
+        <a href="#contact" class="practice-card-link">Talk to an attorney →</a>
+      </div>
+
+      <!-- Family Law -->
+      <div class="practice-card fade-in delay-2">
+        <div class="practice-icon">
+          <!-- Heart/people icon -->
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Family Law</h3>
+        <p>
+          Divorce, custody, support, and more — family legal matters are deeply personal.
+          Andres Santiago Lozano approaches each case with empathy and resolve,
+          focusing on practical solutions that protect you and your children.
+        </p>
+        <a href="#contact" class="practice-card-link">Talk to an attorney →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div style="padding: 0 5%;"><div class="section-divider"></div></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <div class="section-label">Get in Touch</div>
+        <h2>Schedule Your Free Consultation</h2>
+        <p>
+          Every case is different. Reach out to Andres Santiago Lozano directly — no pressure, no commitment.
+          Just an honest conversation about your situation and your options.
+        </p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.36 2 2 0 0 1 3.6 1H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="detail-label">Phone</div>
+              <!-- TODO: Replace with attorney's phone number -->
+              <div class="detail-value">[Phone Number]</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="detail-label">Email</div>
+              <!-- TODO: Replace with attorney's public contact email -->
+              <div class="detail-value">[email@firmname.com]</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="detail-label">Office</div>
+              <!-- TODO: Replace with actual street address and ZIP code -->
+              <div class="detail-value">[Street Address]<br>Chattanooga, TN [ZIP]</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="detail-label">Office Hours</div>
+              <!-- TODO: Update office hours to match actual availability -->
+              <div class="detail-value">Mon–Fri, 9:00 AM – 5:00 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="fade-in delay-1">
+        <div id="form-success" class="form-success">
+          ✓ Your message has been sent. Andres Santiago Lozano will be in touch shortly.
+        </div>
+        <form class="contact-form" id="inquiry-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="matter">Area of Law</label>
+            <select id="matter" name="matter">
+              <option value="" disabled selected>Select a practice area...</option>
+              <option value="criminal">Criminal Defense</option>
+              <option value="dui">DUI Defense</option>
+              <option value="family">Family Law</option>
+              <option value="other">Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Brief Description of Your Situation</label>
+            <textarea id="message" name="message" placeholder="Please share a brief summary of your legal matter. All information is kept strictly confidential." required></textarea>
+          </div>
+          <p class="form-note">
+            This form does not create an attorney-client relationship. Information shared here is confidential.
+            Andres Santiago Lozano will respond within one business day.
+          </p>
+          <button type="submit" class="form-submit">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <!-- TODO: Replace [Firm Name] with the official name of the law firm -->
+  <div class="footer-name">[The Lozano Law Firm] | Andres Santiago Lozano, Esq.</div>
+  <!-- TODO: Replace [Phone Number] with real phone (also update the tel: href) and [email@firmname.com] with real email -->
+  <p>Chattanooga, TN &nbsp;·&nbsp; <a href="tel:+10000000000">[(423) 596-5040)]</a> &nbsp;·&nbsp; <a href="mailto:email@firmname.com">[email@firmname.com]</a></p>
+  <p style="margin-top: 16px; font-size: 0.75rem;">
+    <!-- TODO: Replace [Firm Name] with official firm name -->
+    © <span id="year"></span> [The Lozano Law Firm]. All rights reserved. &nbsp;|&nbsp;
+    Attorney advertising. Prior results do not guarantee similar outcomes.
+  </p>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav scroll shadow
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Form — sends to attorney's email via mailto
+  document.getElementById('inquiry-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const f = this;
+    const name = f.fname.value + ' ' + f.lname.value;
+    const area = f.matter.options[f.matter.selectedIndex]?.text || 'Not specified';
+    const body = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Phone: ' + (f.phone.value || 'Not provided') + '\n' +
+      'Area of Law: ' + area + '\n\n' +
+      'Message:\n' + f.message.value
+    );
+    const subject = encodeURIComponent('New Inquiry from ' + name + ' — ' + area);
+    // TODO: Replace [email@firmname.com] below with the attorney's actual email address
+    window.location.href = 'mailto:[email@firmname.com]?subject=' + subject + '&body=' + body;
+    document.getElementById('form-success').style.display = 'block';
+    f.reset();
+    setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 6000);
+  });
+</script>
+</body>
+</html>
